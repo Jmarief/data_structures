@@ -17,7 +17,13 @@ def all_houses(filename):
 
     houses = set()
 
-    # TODO: replace this with your code
+    file_object = open(filename, "r")
+
+    for line in file_object:
+      data_point = line.split("|")
+
+      if data_point[2]:
+        houses.add(data_point[2])
 
     return houses
 
@@ -52,7 +58,17 @@ def students_by_cohort(filename, cohort='All'):
 
     students = []
 
-    # TODO: replace this with your code
+    file_object = open(filename, "r")
+
+    for line in file_object:
+      line = line.rstrip()
+      data_point = line.split("|")
+      # !!! FIX: cohort_name needs to be the 5th element !!!
+      first_name, last_name, cohort_name = data_point[0:3]
+      if cohort == 'All':
+        students.append(first_name + last_name)
+      elif cohort_name == cohort:
+        students.append(first_name + last_name)
 
     return sorted(students)
 
